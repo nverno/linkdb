@@ -1,0 +1,9 @@
+*.elc
+*~
+.#*
+*.elc
+/.cask
+loaddefs.el
+*.html 
+*autoloads.el  
+*.sqlite
