@@ -1,0 +1,31 @@
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["fullTextSearch"]
+}
+
+datasource db {
+  provider = "sqlite"
+  // "file:./test.db"
+  url      = env("DATABASE_URL")
+}
+
+// enum LinkType {
+//   href
+//   file
+// }
+
+model links {
+  id         Int      @id @default(autoincrement())
+  updated_at DateTime @updatedAt
+  name       String
+  ref        String
+  type       String   @default("href")
+  notes      String
+  tags       tags[]   @relation(name: "taggings")
+}
+
+model tags {
+  id    Int     @id @default(autoincrement())
+  name  String  @unique
+  links links[] @relation("taggings")
+}

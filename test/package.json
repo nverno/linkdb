@@ -1,0 +1,33 @@
+{
+  "name": "linkdb",
+  "version": "0.0.1",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc && tsc-alias",
+    "db:generate": "prisma generate",
+    "db:init": "prisma init",
+    "db:migrate": "prisma migrate dev --preview-feature",
+    "db:push": "prisma db push --preview-feature",
+    "db:reset": "prisma migrate reset",
+    "db:seed": "prisma db seed",
+    "dev:rebuild": "docker-compose down --volumes && docker-compose up --build -d && npm run db:generate && npm run db:migrate && npm run db:seed && docker-compose up server"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.1.1",
+    "debug": "^4.3.4",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.4.9",
+    "prisma": "^5.1.1",
+    "seedrandom": "^3.0.5",
+    "ts-node": "^10.9.1",
+    "tsc-alias": "^1.8.7",
+    "tslib": "^2.6.1",
+    "typescript": "^5.1.6"
+  },
+  "prisma": {
+    "schema": "src/prisma/linkdb.prisma",
+    "seed": "ts-node src/prisma/seed.ts"
+  }
+}
