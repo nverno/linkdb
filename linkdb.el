@@ -43,10 +43,11 @@
   :type 'file
   :group 'files)
 
-(defun linkdb--clean (str)
-  (if (stringp str )
-      (replace-regexp-in-string " ?\\([(),]\\) ?" "\\1" (string-clean-whitespace str))
-    str))
+(eval-and-compile
+  (defun linkdb--clean (str)
+    (if (stringp str )
+        (replace-regexp-in-string " ?\\([(),]\\) ?" "\\1" (string-clean-whitespace str))
+      str)))
 
 (defconst linkdb--schema
   (eval-when-compile
